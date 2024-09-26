@@ -5,7 +5,24 @@ import java.util.Map;
 
 public class TwoSum {
 
+    //Solution3
+    // O(n)
     public int[] twoSum(int[] nums, int target) {
+
+        Map<Integer, Integer> mappingTable = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (mappingTable.containsKey(complement)) {
+                return new int[]{ mappingTable.get(complement), i};
+            }
+            mappingTable.put(nums[i], i);
+        }
+        return new int[]{0, 0};
+    }
+
+    //Solution2
+    // O(n)
+/*    public int[] twoSum(int[] nums, int target) {
 
         Map<Integer, Integer> mappingTable = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
@@ -18,10 +35,10 @@ public class TwoSum {
             }
         }
         return new int[]{0, 0};
-    }
+    }*/
 
     //Solution1
-    // O(n) = n^2
+    // O(n^2)
 /*    public int[] twoSum(int[] nums, int target) {
 
         for (int i = 0; i < nums.length; i++) {
