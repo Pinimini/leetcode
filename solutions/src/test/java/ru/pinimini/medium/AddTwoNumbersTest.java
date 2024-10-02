@@ -5,20 +5,20 @@ import org.junit.jupiter.api.Test;
 class AddTwoNumbersTest {
 
     AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
-    ListNode listNodeLast = new ListNode(3, null);
-    ListNode listNode2 = new ListNode(4, listNodeLast);
-    ListNode listNodeFirst = new ListNode(2, listNode2);
+    ListNode listNodeLast = new ListNode(9, null);
+    ListNode listNode2 = new ListNode(9, listNodeLast);
+    ListNode listNodeFirst = new ListNode(9, listNode2);
 
     ListNode iterListNode = listNodeFirst;
 
-    ListNode listNodeLast2 = new ListNode(4, null);
-    ListNode listNode22 = new ListNode(6, listNodeLast2);
-    ListNode listNodeFirst2 = new ListNode(5, listNode22);
+    ListNode listNodeLast2 = new ListNode(9, null);
+    ListNode listNode22 = new ListNode(9, listNodeLast2);
+    ListNode listNode11 = new ListNode(9, listNode22);
 
     @Test
     void addTwoNumbers() {
         ListNode resultNode = addTwoNumbers
-                .addTwoNumbers(listNodeFirst, listNodeFirst2);
+                .addTwoNumbers(listNodeFirst, listNode11);
 
 
         while (resultNode != null) {
