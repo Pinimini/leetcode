@@ -1,14 +1,25 @@
 package ru.pinimini.easy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PascalsTriangle {
+
+    //Решение с помощью рекурсии + мемоизация (Нисходящее DP)
+    private static Map<Integer, List<Integer>> cache = new HashMap<>();
 
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 1; i <= numRows; i++) {
-            result.add(getSum(i));
+            if (cache.containsKey(i)) {
+                result.add(cache.get(i));
+            } else {
+                List<Integer> sum = getSum(i);
+                result.add(sum);
+                cache.put(i, sum);
+            }
         }
         return result;
     }
@@ -21,7 +32,15 @@ public class PascalsTriangle {
             } else if (i == n - 1) {
                 currentList.add(1);
             } else {
-                List<Integer> previousResultList = getSum(n - 1);
+                List<Integer> previousResultList;
+                if (cache.containsKey(n - 1)) {
+                    previousResultList = cache.get(n - 1);
+                } else {
+                    List<Integer> sum = getSum(n - 1);
+                    previousResultList = sum;
+                    cache.put(n - 1, sum);
+                }
+
                 int sum = previousResultList.get(i - 1) + previousResultList.get(i);
                 currentList.add(sum);
             }
@@ -30,7 +49,7 @@ public class PascalsTriangle {
     }
 
     //Решение с помощью рекурсии (Нисходящее DP)
-    // Временная сложность O()
+    // Временная сложность O(n^3)???
 /*    public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 1; i <= numRows; i++) {

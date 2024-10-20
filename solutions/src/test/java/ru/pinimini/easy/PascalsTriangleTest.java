@@ -8,6 +8,6 @@ class PascalsTriangleTest {
 
     @Test
     void generate() {
-        pascalsTriangle.generate(14).forEach(System.out::println);
+        pascalsTriangle.generate(678).forEach(System.out::println);
     }
 }
